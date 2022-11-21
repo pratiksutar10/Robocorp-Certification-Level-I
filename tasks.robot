@@ -6,6 +6,7 @@ Library             RPA.HTTP
 Library             RPA.Excel.Files
 Library             RPA.PDF
 Library             RPA.Desktop
+Library             RPA.Robocorp.Vault
 
 
 *** Tasks ***
@@ -28,8 +29,9 @@ Open The Intranet Website
 
 Log In
     [Documentation]    Log In
-    Input Text    username    maria
-    Input Password    password    thoushallnotpass
+    ${secret}=    Get Secret    robotsparebin
+    Input Text    username    ${secret}[username]
+    Input Password    password    ${secret}[password]
     Submit Form
     Wait Until Page Contains Element    id:sales-form
 
